@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+
+  ttvix-client:
+    container_name: ttvix-client
+    env_file:
+      - .env
+    restart: always
+    build:
+      context: ./ttvix-client
+    environment:
+      - VITE_TEST=${VITE_TEST}
+    volumes:
+      - ./ttvix-client:/app
+      - ttvix-client-modules:/app/node_modules
+    ports:
+      - 3000:3000
+    networks:
+      - net-ttvix
+
+networks:
+  net-ttvix:
+
+
+volumes:
+  ttvix-client-modules:
